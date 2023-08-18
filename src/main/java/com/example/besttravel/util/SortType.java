@@ -1,0 +1,7 @@
+package com.example.besttravel.util;
+
+public enum SortType {
+    LOWER,//ORDENAMIENTO DE PRECIOS DE MENOR A MAYOR
+    UPPER,//ORDENAMIENTO DE PRECIOS DE MAYOR A MENOR
+    NONE //ORDENAR COMO VIENE EN LA BASE DE DATOS
+}
