@@ -16,7 +16,6 @@ public class FlyController {
     private final IFlyService flyService;
 
     public ResponseEntity<Page<FlyResponse>>getAll(@RequestParam Integer Page,
-                                                   @RequestParam Integer size,
-                                                   @Re)
+                                                   @RequestParam Integer size)
 
 }
