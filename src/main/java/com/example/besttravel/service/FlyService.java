@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -41,12 +42,18 @@ public class FlyService implements IFlyService {
 
     @Override
     public List<FlyResponse> readPriceLess(BigDecimal price) {
-        return null;
+
+        return  flyRepository.selectLessPrice(price)
+                .stream()
+                .map(this::entityToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<FlyResponse> readBetweenPrice(BigDecimal min, BigDecimal max) {
-        return null;
+        return flyRepository.selectBetweenPrice(min,max)
+                .stream().map(this::entityToResponse)
+                .collect(Collectors.toList());
     }
 
     @Override

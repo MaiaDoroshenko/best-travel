@@ -2,12 +2,13 @@ package com.example.besttravel.controller;
 
 import com.example.besttravel.model.responses.FlyResponse;
 import com.example.besttravel.service.abstractService.IFlyService;
+import com.example.besttravel.util.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
@@ -15,7 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class FlyController {
     private final IFlyService flyService;
 
-    public ResponseEntity<Page<FlyResponse>>getAll(@RequestParam Integer Page,
-                                                   @RequestParam Integer size)
+    @GetMapping
+    public ResponseEntity<Page<FlyResponse>> getAll(@RequestParam Integer page,
+                                                    @RequestParam Integer size,
+                                                    @RequestHeader(required = false) SortType sortType) {
 
+        if (Objects.isNull(sortType))
+            sortType = SortType.NONE;//si el objeto sortType viene nulo le asigo None para que venga por defecto
+        var response = flyService.readAll(page, size, sortType);
+        return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
+
+
+    }
 }
