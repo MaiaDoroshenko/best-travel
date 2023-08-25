@@ -43,7 +43,7 @@ public class FlyService implements IFlyService {
     @Override
     public List<FlyResponse> readPriceLess(BigDecimal price) {
 
-        return  flyRepository.selectLessPrice(price)
+        return flyRepository.selectLessPrice(price)
                 .stream()
                 .map(this::entityToResponse)
                 .collect(Collectors.toList());
@@ -51,18 +51,21 @@ public class FlyService implements IFlyService {
 
     @Override
     public List<FlyResponse> readBetweenPrice(BigDecimal min, BigDecimal max) {
-        return flyRepository.selectBetweenPrice(min,max)
+        return flyRepository.selectBetweenPrice(min, max)
                 .stream().map(this::entityToResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<FlyResponse> readByOriginDestiny(String origin, String destiny) {
-        return null;
+        return flyRepository.selectOriginDestiny(origin, destiny)
+                .stream().map(this::entityToResponse)
+                .collect(Collectors.toList());
     }
-    private FlyResponse entityToResponse(FlyEntity flyEntity){
-        FlyResponse response=new FlyResponse();
-        BeanUtils.copyProperties(flyEntity,response);
+
+    private FlyResponse entityToResponse(FlyEntity flyEntity) {
+        FlyResponse response = new FlyResponse();
+        BeanUtils.copyProperties(flyEntity, response);
         return response;
     }
 }
