@@ -30,14 +30,14 @@ public class FlyController {
     }
 
     @GetMapping("less_price")
-    public ResponseEntity<List<FlyResponse>>getLessPrice(@RequestParam BigDecimal price){
-        var response=flyService.readPriceLess(price);
-        return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
+    public ResponseEntity<List<FlyResponse>> getLessPrice(@RequestParam BigDecimal price) {
+        var response = flyService.readPriceLess(price);
+        return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
     }
 
     @GetMapping("between_price")
-    public ResponseEntity<List<FlyResponse>>betweenPrice(@RequestParam BigDecimal min,@RequestParam BigDecimal max){
-        var response=flyService.readBetweenPrice(min,max);
-        return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
+    public ResponseEntity<List<FlyResponse>> betweenPrice(@RequestParam BigDecimal min, @RequestParam BigDecimal max) {
+        var response = flyService.readBetweenPrice(min, max);
+        return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
     }
 }

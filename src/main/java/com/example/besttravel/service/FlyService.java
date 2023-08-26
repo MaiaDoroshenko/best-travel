@@ -5,7 +5,6 @@ import com.example.besttravel.model.responses.FlyResponse;
 import com.example.besttravel.repository.FlyRepository;
 import com.example.besttravel.service.abstractService.IFlyService;
 import com.example.besttravel.util.SortType;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.beans.BeanUtils;
@@ -32,10 +31,13 @@ public class FlyService implements IFlyService {
         switch (sortType) {
             case NONE:
                 pageRequest = PageRequest.of(page, size); //Si sortType es NONE, configura pageRequest utilizando la paginación básica (sin ordenamiento explícito).
+                break;
             case LOWER:
                 pageRequest = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());//Si sortType es LOWER, configura pageRequest utilizando paginación y ordenamiento ascendente (menor a mayor)
+                break;
             case UPPER:
                 pageRequest = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());//Si sortType es UPPER, configura pageRequest utilizando paginación y ordenamiento descendente (mayor a menor)
+                break;
         }
         return flyRepository.findAll(pageRequest).map(this::entityToResponse);
     }
