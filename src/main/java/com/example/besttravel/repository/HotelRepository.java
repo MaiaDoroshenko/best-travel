@@ -13,10 +13,9 @@ import java.util.UUID;
 @Repository
 
 public interface HotelRepository extends JpaRepository<HotelEntity,Long> {
-    List<HotelEntity>findByPriceLessThan(BigDecimal price);//busca el del menor precio
-    List<HotelEntity>findByPriceIsBetween(BigDecimal min,BigDecimal max);//entre dos precios
-    List<HotelEntity>findByRatingGreaterThan(Integer rating);// la calificacion mayor a...
+    List<HotelEntity>findByPriceLessThan(BigDecimal price);
+    List<HotelEntity>findByPriceIsBetween(BigDecimal min,BigDecimal max);
+    List<HotelEntity>findByRatingGreaterThan(Integer raiting);
 
 
-//    Optional<HotelEntity> findByReservationId(UUID ID);
 }

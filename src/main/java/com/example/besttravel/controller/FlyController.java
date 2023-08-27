@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -38,6 +37,11 @@ public class FlyController {
     @GetMapping("between_price")
     public ResponseEntity<List<FlyResponse>> betweenPrice(@RequestParam BigDecimal min, @RequestParam BigDecimal max) {
         var response = flyService.readBetweenPrice(min, max);
+        return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
+    }
+    @GetMapping("origin_destiny")
+    public ResponseEntity<List<FlyResponse>> originDestiny(@RequestParam String origin, @RequestParam String destiny) {
+        var response = flyService.readByOriginDestiny(origin,destiny);
         return response.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(response);
     }
 }
