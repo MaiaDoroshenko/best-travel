@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -14,7 +14,7 @@ import java.util.UUID;
 @Builder
 public class TourResponse {
     private Long id;
-    private List<UUID> tiketIds;
-    private List<UUID>resertvationIds;
+    private Set<UUID> tiketIds;
+    private Set<UUID>resertvationIds;
 
 }

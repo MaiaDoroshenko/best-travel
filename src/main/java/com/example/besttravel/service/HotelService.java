@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Builder
-@Transactional
+@Transactional(readOnly = true)
 public class HotelService implements IHotelService {
     private final HotelRepository hotelRepository;
 

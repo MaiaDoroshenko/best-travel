@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +31,7 @@ public class FlyEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "fly",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<TicketEntity> tickets;
+    private Set<TicketEntity> tickets;
 
 
 

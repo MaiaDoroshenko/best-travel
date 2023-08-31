@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Builder
-@Transactional
+@Transactional(readOnly = true)
 public class FlyService implements IFlyService {
     private final FlyRepository flyRepository;
 

@@ -13,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-public class TourRequest{
-    public Long customerId;
-    List<TourFlyRequest> flieghts;
-    List<ToutHotelRequest>hotels;
+public class TourRequest {
+    public String customerId;
+    private List<TourFlyRequest> flieghts;
+    private List<ToutHotelRequest> hotels;
 }

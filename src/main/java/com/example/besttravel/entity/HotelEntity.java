@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -26,5 +27,5 @@ public class HotelEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy ="hotel")
-    private List<ReservationEntity> reservations;
+    private Set<ReservationEntity> reservations;
 }
