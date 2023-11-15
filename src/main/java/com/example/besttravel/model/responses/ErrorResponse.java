@@ -9,5 +9,5 @@ import lombok.experimental.SuperBuilder;
  @Data
 @SuperBuilder
 public class ErrorResponse extends BaseErrorResponse{
- private String message;
+ private String error;
 }

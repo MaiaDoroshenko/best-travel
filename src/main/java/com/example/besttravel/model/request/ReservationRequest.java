@@ -6,9 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +19,10 @@ public class ReservationRequest {
     @Positive
     @NotNull(message = "Id hotel is mandatory")
     private Long idHotel;
+    @Min(value =1,message = "Min one day to make reservation")
+    @Max(value = 15, message = " Max 15 days to make reservation")
+    @NotNull(message = "total days is mandatory")
     private Integer totalDays;
+    @Email(message = "Invalid Email")
     private String email;
 }

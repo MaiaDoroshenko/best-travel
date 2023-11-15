@@ -2,6 +2,7 @@ package com.example.besttravel.service;
 
 import com.example.besttravel.entity.ReservationEntity;
 import com.example.besttravel.exception.IdNotFoundException;
+import com.example.besttravel.helpers.BlackListHelper;
 import com.example.besttravel.model.request.ReservationRequest;
 import com.example.besttravel.model.responses.HotelResponse;
 import com.example.besttravel.model.responses.ReservationResponse;
@@ -28,9 +29,11 @@ public class ReservationService implements IReservationService {
     private final ReservationRepository reservationRepository;
     private CustomerRepository customerRepository;
     private final HotelRepository hotelRepository;
+    private final BlackListHelper blackListHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
         var customer = customerRepository.findById(request.getIdClient()).orElseThrow(()->new IdNotFoundException("customer"));
         var hotel = hotelRepository.findById(Long.valueOf(request.getIdHotel())).orElseThrow(()->new IdNotFoundException("hotel"));
 

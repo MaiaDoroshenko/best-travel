@@ -7,4 +7,5 @@ public interface CRUDService<RQ,RS,Id> {
     RS update (RQ request,Id id);
     void delete(Id id);
 
+
 }

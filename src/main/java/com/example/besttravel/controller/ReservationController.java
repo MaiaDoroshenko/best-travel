@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class ReservationController {
 
 
     @PostMapping("create")
-    public ResponseEntity<ReservationResponse> create(@RequestBody ReservationRequest request) {
+    public ResponseEntity<ReservationResponse> create(@Valid @RequestBody ReservationRequest request) {
         if (request.getIdClient() == null || request.getIdHotel() == null||request.getTotalDays()==null) {
             return ResponseEntity.badRequest().build();
         }
@@ -40,7 +41,7 @@ public class ReservationController {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity<ReservationResponse>update(@PathVariable UUID id,@RequestBody ReservationRequest request){
+    public ResponseEntity<ReservationResponse>update(@Valid @PathVariable UUID id,@RequestBody ReservationRequest request){
         return ResponseEntity.ok(reservationService.update(request,id));
     }
 

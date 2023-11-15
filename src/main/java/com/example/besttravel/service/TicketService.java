@@ -1,6 +1,7 @@
 package com.example.besttravel.service;
 
 import com.example.besttravel.entity.TicketEntity;
+import com.example.besttravel.helpers.BlackListHelper;
 import com.example.besttravel.model.request.TicketRequest;
 import com.example.besttravel.model.responses.FlyResponse;
 import com.example.besttravel.model.responses.TicketResponse;
@@ -28,9 +29,11 @@ public class TicketService implements ITicketService {
     private final FlyRepository flyRepository;
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
+    private final BlackListHelper blackListHelper;
 
     @Override
     public TicketResponse create(TicketRequest request) {
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
         var fly = flyRepository.findById(Long.valueOf(request.getIdFly())).orElseThrow();
         var customer = customerRepository.findById(request.getIdClient()).orElseThrow();
 
